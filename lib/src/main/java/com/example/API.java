@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.SocketException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ExecutorService;
@@ -81,7 +80,7 @@ public class API
     private void seg_unpack(byte[] segment)
     {
         //Unpack source port.
-        incomingSrcPort = getSrsPort(segment);
+        incomingSrcPort = getSrcPort(segment);
 
         //unpack destination port.
         incomingDestPort = getDestPort(segment);
@@ -275,13 +274,12 @@ public class API
         sum += seqNum2;
         sum += flags;
 
-
         return sum;
     }
 
     private short negate(short input)
     {
-        return ~input;
+        return input;
     }
 
 
